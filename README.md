@@ -11,6 +11,7 @@
     <p>It's importante to note that this script uses Pyinstaller to compile the software allowing him to run on Windows as a .EXE file</p>
     <h2>How to use</h2>
     <p>First, you need to check if you have all the libs and dependencies installed using pip.</p>
+    <p>Change the necessary time to send the log in line 27. The default is 7 days, if it pass that stipulated time then the script will send the email and restart the log file.</p>
     <p>Then you can start changing "check_file" and "log_file" to something like:</p>
     <ul>
         <li>check.dll and log.dll</li>
