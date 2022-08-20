@@ -46,7 +46,6 @@ if check_time != 0:
         file.close()
 
 # Function to put the date and name of the active window in the log file
-
 def info():
     current_time = datetime.now()
     current_time_hour = str(current_time.hour)
