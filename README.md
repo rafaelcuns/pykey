@@ -3,7 +3,7 @@
 <ul>
     <li>Pynput - to capture what is being digited</li>
     <li>Datetime - to check the last date that the script has sent the log file and compare it with the current date</li>
-    <li>Linecache - to get the first lines of a text file</li>
+    <li>Linecache - to get any line from a text file</li>
     <li>Smtplib - to send the email</li>
     <li>And Pyautogui - to get the active window name</li>
 </ul>
