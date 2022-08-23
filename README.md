@@ -5,12 +5,13 @@
     <li>Datetime - to check the last date that the script has sent the log file and compare it with the current date</li>
     <li>Linecache - to get any line from a text file</li>
     <li>Smtplib - to send the email</li>
-    <li>And Pyautogui - to get the active window name</li>
+    <li>Pyautogui - to get the active window name</li>
+    <li>And Sys - to increase the recursion limit of the script</li>
 </ul>
 <p>It's importante to note that this script uses Pyinstaller to compile the software allowing him to run on Windows as a .EXE file</p>
 <h2>How to use</h2>
 <p>First, you need to check if you have all the libs and dependencies installed using pip.</p>
-<p>Change the necessary time to send the log in line 27. The default is 7 days, if it pass that stipulated time then the script will send the email and restart the log file.</p>
+<p>Change the necessary time to send the log in line 28. The default is 7 days, if it pass that stipulated time then the script will send the email and restart the log file.</p>
 <p>Then you can start changing "check_file" and "log_file" to something like:</p>
 <ul>
     <li>check.dll and log.dll</li>
@@ -34,4 +35,5 @@
 <p>In order for the program to work at Windows startup, it's important to create a link under <code style="background-color: rgb(53, 53, 53); color: aliceblue;"> C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code> for admin users and <code style="background-color: rgb(53, 53, 53); color: aliceblue;">C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup</code> for non-admin users</p>
 <h2>Last words</h2>
 <p>You can easily check that this program isn't that secure. There's no check if the necessary files exist or ways to hide your email and password if someone decompiles your program.</p>
+<p>Using a function under the same function creates a recursion in the script, and that can lead to memory overflow. As you can see, this occurs on line 146, so I increased the limit of a possible recursion, since when the computer restarts, the script's memory is cleaned.</p>
 <p>THIS PROJECT IS FOR EDUCATIONAL PURPOSES ONLY, SO DO NOT TRY TO HARM PEOPLE USING IT</p>
