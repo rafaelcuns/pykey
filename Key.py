@@ -11,13 +11,12 @@ day = getline("check_file", 1)
 month = getline("check_file", 2)
 day = int(day)
 month = int(month)
-last_check = date(2022, month, day)
+year_today = int(date.today().year)
+last_check = date(year_today, month, day)
 
-day_today = str(date.today())
-day_today = int(day_today[8:])
-month_today = str(date.today())
-month_today = int(month_today[5:7])
-today = date(2022, month_today, day_today)
+day_today = int(date.today().day)
+month_today = int(date.today().month)
+today = date(year_today, month_today, day_today)
     
 time = today - last_check
 time = str(time)
