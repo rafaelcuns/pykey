@@ -14,7 +14,7 @@ It's importante to note that this script uses Pyinstaller to compile the softwar
 ## How to use
 First, you need to check if you have all the libs and dependencies installed using pip.
 
-Change the necessary time to send the log in line 28. The default is 7 days, if it pass that stipulated time then the script will send the email and restart the log file.
+Change the necessary time to send the log in line 27. The default is 7 days, if it pass that stipulated time then the script will send the email and restart the log file.
 
 Then you can start changing "check_file" and "log_file" to something like:
 
@@ -35,7 +35,7 @@ In order to do that you will need to:
     <img src="readme_images/Tutorial3.png" alt="">
 3. Grab that password and put it with your email in the script
 
-Finally, whe can compile our script using Pyinstaller with: <code style="background-color: rgb(53, 53, 53); color: aliceblue;">pyinstaller -w --onefile --icon=app.ico Key.py</code>
+Finally, whe can compile our script using Pyinstaller with: <code style="background-color: rgb(53, 53, 53); color: aliceblue;">pyinstaller -w --onefile Key.py</code>
 
 It will generate a .EXE file that can be saved in any folder with the check and log files with it
 
@@ -45,6 +45,6 @@ In order for the program to work at Windows startup, it's important to create a 
 
 You can easily check that this program isn't that secure. There's no check if the necessary files exist or ways to hide your email and password if someone decompiles your program.
 
-Using a function under the same function creates a recursion in the script, and that can lead to memory overflow. As you can see, this occurs on line 146, so I increased the limit of a possible recursion, since when the computer restarts, the script's memory is cleaned.
+Using a function under the same function creates a recursion in the script, and that can lead to memory overflow. As you can see, this occurs on line 102, so I increased the limit of a possible recursion, since when the computer restarts, the script's memory is cleaned.
 
 THIS PROJECT IS FOR EDUCATIONAL PURPOSES ONLY, SO DO NOT TRY TO HARM PEOPLE USING IT
