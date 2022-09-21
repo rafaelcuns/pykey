@@ -39,7 +39,7 @@ Finally, whe can compile our script using Pyinstaller with: <code style="backgro
 
 It will generate a .EXE file that can be saved in any folder with the check and log files with it
 
-In order for the program to work at Windows startup, it's important to create a link under <code style="background-color: rgb(53, 53, 53); color: aliceblue;"> C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code> for admin users and <code style="background-color: rgb(53, 53, 53); color: aliceblue;">C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup</code> for non-admin users
+In order for the program to work at Windows startup, it's important to create a link under <code style="background-color: rgb(53, 53, 53); color: aliceblue;"> C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code> for local users and <code style="background-color: rgb(53, 53, 53); color: aliceblue;">C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup</code> for all users
 
 ## Last words
 
